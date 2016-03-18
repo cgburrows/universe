@@ -3,8 +3,6 @@ package nbody;
 import edu.princeton.cs.In;
 import edu.princeton.cs.StdDraw;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * ****************************************************************************
@@ -85,14 +83,14 @@ public class Universe {
         } // for
     } // increaseTime( double )
     
-    public void stars() {
-        final int sol = 512 * 512;
-        ArrayList<Boolean> bg = new ArrayList<>();
-        
-        for (int i = 0; i > sol; i++) {
-            
-        }
-    } // stars()
+//    public void stars() {
+//        final int sol = 512 * 512;
+//        ArrayList<Boolean> bg = new ArrayList<>();
+//        
+//        for (int i = 0; i > sol; i++) {
+//            
+//        }
+//    } // stars()
 
     // draw the N bodies
     public void draw() {
