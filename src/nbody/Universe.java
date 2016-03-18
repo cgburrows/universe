@@ -53,6 +53,7 @@ public class Universe {
             double[] velocity = {vx, vy};
             Vector r = new Vector(position);
             Vector v = new Vector(velocity);
+            double size = mass * .0000000000000000000000000000000001;
             orbs[i] = new Body(r, v, mass);
         } // for
     } // Universe()
@@ -92,11 +93,14 @@ public class Universe {
     public static void main(String[] args) {
         Universe newton = new Universe(args[1]);
         double dt = Double.parseDouble(args[0]);
+        
+        StdDraw.setPenColor();      
         while (true) {
             StdDraw.clear();
             newton.increaseTime(dt);
             newton.draw();
             StdDraw.show(10);
+            StdDraw.textLeft(0, 0, "HELLO");
         } // while
     } // main( String [] )
 } // Universe
