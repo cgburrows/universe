@@ -26,6 +26,7 @@ public class Universe {
     private final double radius;     // radius of universe
     private final int N;             // number of bodies
     private final Body[] orbs;       // array of N bodies
+    private final Star[] stars;       // array of stars
 
     // read universe from file
     public Universe(String fileName) {
@@ -57,6 +58,12 @@ public class Universe {
             double size = mass * .0000000000000000000000000000000001;
             orbs[i] = new Body(r, v, mass);
         } // for
+        
+        // do some stars
+        stars = new Star[5];
+        for (int i = 0; i < 5; i++) {
+            // make random coords here
+        }
     } // Universe()
 
     // increment time by dt units, assume forces are constant in given interval
@@ -82,15 +89,6 @@ public class Universe {
             orbs[i].move(f[i], dt);
         } // for
     } // increaseTime( double )
-    
-//    public void stars() {
-//        final int sol = 512 * 512;
-//        ArrayList<Boolean> bg = new ArrayList<>();
-//        
-//        for (int i = 0; i > sol; i++) {
-//            
-//        }
-//    } // stars()
 
     // draw the N bodies
     public void draw() {
@@ -98,6 +96,11 @@ public class Universe {
             orbs[i].draw();
         } // for
     } // draw()
+    
+    // add stars
+    public void burn() {
+        
+    }
 
     // client to simulate a universe
     public static void main(String[] args) {
