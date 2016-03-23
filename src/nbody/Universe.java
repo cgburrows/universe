@@ -2,6 +2,7 @@ package nbody;
 
 import edu.princeton.cs.In;
 import edu.princeton.cs.StdDraw;
+import java.util.ArrayList;
 
 /**
  * ****************************************************************************
@@ -25,6 +26,7 @@ public class Universe {
     private final double radius;     // radius of universe
     private final int N;             // number of bodies
     private final Body[] orbs;       // array of N bodies
+    private final Star[] stars;       // array of stars
 
     // read universe from file
     public Universe(String fileName) {
@@ -53,8 +55,15 @@ public class Universe {
             double[] velocity = {vx, vy};
             Vector r = new Vector(position);
             Vector v = new Vector(velocity);
+            double size = mass * .0000000000000000000000000000000001;
             orbs[i] = new Body(r, v, mass);
         } // for
+        
+        // do some stars
+        stars = new Star[5];
+        for (int i = 0; i < 5; i++) {
+            // make random coords here
+        }
     } // Universe()
 
     // increment time by dt units, assume forces are constant in given interval
@@ -87,16 +96,23 @@ public class Universe {
             orbs[i].draw();
         } // for
     } // draw()
+    
+    // add stars
+    public void burn() {
+        
+    }
 
     // client to simulate a universe
     public static void main(String[] args) {
         Universe newton = new Universe(args[1]);
         double dt = Double.parseDouble(args[0]);
+          
         while (true) {
             StdDraw.clear();
             newton.increaseTime(dt);
             newton.draw();
             StdDraw.show(10);
+            StdDraw.textLeft(0, 0, "HELLO");
         } // while
     } // main( String [] )
 } // Universe

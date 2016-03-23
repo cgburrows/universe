@@ -16,11 +16,13 @@ public class Body {
     private Vector r;      // position
     private Vector v;      // velocity
     private final double mass;   // mass
+    private final double size;
 
     public Body(Vector r, Vector v, double mass) {
         this.r = r;
         this.v = v;
         this.mass = mass;
+        this.size = mass * .00000000000000000000000000000001 + .03;
     } // Body( Vector, Vector, double )
 
     public void move(Vector f, double dt) {
@@ -39,7 +41,7 @@ public class Body {
     } // forceFrom( Body )
 
     public void draw() {
-        StdDraw.setPenRadius(0.025);
+        StdDraw.setPenRadius(size);
         StdDraw.point(r.cartesian(0), r.cartesian(1));
     } // draw()
 
