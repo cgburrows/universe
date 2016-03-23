@@ -41,7 +41,7 @@ public class Star {
         this.yPos = y;
 
         r = new Random();
-        d = (double) (r.nextInt(1000));
+        d = (double) (r.nextInt(628));
     } // Star()
 
     public void shine() {

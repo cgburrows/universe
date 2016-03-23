@@ -44,7 +44,7 @@ public class Universe {
         N = inputStream.readInt();
 
         // number of stars
-        S = 300;
+        S = 600;
 
         // the set scale for drawing on screen
         StdDraw.setCanvasSize(900, 900);
