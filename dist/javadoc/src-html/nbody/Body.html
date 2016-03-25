@@ -1,0 +1,126 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="en">
+<head>
+<title>Source code</title>
+<link rel="stylesheet" type="text/css" href="../../stylesheet.css" title="Style">
+</head>
+<body>
+<div class="sourceContainer">
+<pre><span class="sourceLineNo">001</span>package nbody;<a name="line.1"></a>
+<span class="sourceLineNo">002</span><a name="line.2"></a>
+<span class="sourceLineNo">003</span>import edu.princeton.cs.StdDraw;<a name="line.3"></a>
+<span class="sourceLineNo">004</span><a name="line.4"></a>
+<span class="sourceLineNo">005</span>/******************************************************************************<a name="line.5"></a>
+<span class="sourceLineNo">006</span> *  Compilation:  javac Body.java<a name="line.6"></a>
+<span class="sourceLineNo">007</span> *  Execution:    java Body<a name="line.7"></a>
+<span class="sourceLineNo">008</span> *  Dependencies: Vector.java StdDraw.java<a name="line.8"></a>
+<span class="sourceLineNo">009</span> *<a name="line.9"></a>
+<span class="sourceLineNo">010</span> *  Implementation of a 2D Body with a position, velocity and mass.<a name="line.10"></a>
+<span class="sourceLineNo">011</span> *<a name="line.11"></a>
+<span class="sourceLineNo">012</span> *<a name="line.12"></a>
+<span class="sourceLineNo">013</span> ******************************************************************************/<a name="line.13"></a>
+<span class="sourceLineNo">014</span><a name="line.14"></a>
+<span class="sourceLineNo">015</span>public class Body {<a name="line.15"></a>
+<span class="sourceLineNo">016</span>    private Vector r;      // position<a name="line.16"></a>
+<span class="sourceLineNo">017</span>    private Vector v;      // velocity<a name="line.17"></a>
+<span class="sourceLineNo">018</span>    private final double mass;   // mass<a name="line.18"></a>
+<span class="sourceLineNo">019</span>    private final double size;<a name="line.19"></a>
+<span class="sourceLineNo">020</span><a name="line.20"></a>
+<span class="sourceLineNo">021</span>    public Body(Vector r, Vector v, double mass) {<a name="line.21"></a>
+<span class="sourceLineNo">022</span>        this.r = r;<a name="line.22"></a>
+<span class="sourceLineNo">023</span>        this.v = v;<a name="line.23"></a>
+<span class="sourceLineNo">024</span>        this.mass = mass;<a name="line.24"></a>
+<span class="sourceLineNo">025</span>        this.size = mass * .00000000000000000000000000000001 + .03;<a name="line.25"></a>
+<span class="sourceLineNo">026</span>    } // Body( Vector, Vector, double )<a name="line.26"></a>
+<span class="sourceLineNo">027</span><a name="line.27"></a>
+<span class="sourceLineNo">028</span>    public void move(Vector f, double dt) {<a name="line.28"></a>
+<span class="sourceLineNo">029</span>        Vector a = f.times(1/mass);<a name="line.29"></a>
+<span class="sourceLineNo">030</span>        v = v.plus(a.times(dt));<a name="line.30"></a>
+<span class="sourceLineNo">031</span>        r = r.plus(v.times(dt));<a name="line.31"></a>
+<span class="sourceLineNo">032</span>    } // move( Vector, double )<a name="line.32"></a>
+<span class="sourceLineNo">033</span><a name="line.33"></a>
+<span class="sourceLineNo">034</span>    public Vector forceFrom(Body b) {<a name="line.34"></a>
+<span class="sourceLineNo">035</span>        Body a = this;<a name="line.35"></a>
+<span class="sourceLineNo">036</span>        double G = 6.67e-11;<a name="line.36"></a>
+<span class="sourceLineNo">037</span>        Vector delta = b.r.minus(a.r);<a name="line.37"></a>
+<span class="sourceLineNo">038</span>        double dist = delta.magnitude();<a name="line.38"></a>
+<span class="sourceLineNo">039</span>        double F = (G * a.mass * b.mass) / (dist * dist);<a name="line.39"></a>
+<span class="sourceLineNo">040</span>        return delta.direction().times(F);<a name="line.40"></a>
+<span class="sourceLineNo">041</span>    } // forceFrom( Body )<a name="line.41"></a>
+<span class="sourceLineNo">042</span><a name="line.42"></a>
+<span class="sourceLineNo">043</span>    public void draw() {<a name="line.43"></a>
+<span class="sourceLineNo">044</span>        StdDraw.setPenRadius(size);<a name="line.44"></a>
+<span class="sourceLineNo">045</span>        StdDraw.point(r.cartesian(0), r.cartesian(1));<a name="line.45"></a>
+<span class="sourceLineNo">046</span>    } // draw()<a name="line.46"></a>
+<span class="sourceLineNo">047</span><a name="line.47"></a>
+<span class="sourceLineNo">048</span>    // this method is only needed if you want to change the size of the bodies<a name="line.48"></a>
+<span class="sourceLineNo">049</span>    public void draw(double penRadius) {<a name="line.49"></a>
+<span class="sourceLineNo">050</span>        StdDraw.setPenRadius(penRadius);<a name="line.50"></a>
+<span class="sourceLineNo">051</span>        StdDraw.point(r.cartesian(0), r.cartesian(1));<a name="line.51"></a>
+<span class="sourceLineNo">052</span>    } // draw( double )<a name="line.52"></a>
+<span class="sourceLineNo">053</span><a name="line.53"></a>
+<span class="sourceLineNo">054</span>} // Body<a name="line.54"></a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</div>
+</body>
+</html>

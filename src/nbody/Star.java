@@ -7,7 +7,6 @@ package nbody;
 
 import edu.princeton.cs.StdDraw;
 import java.awt.Color;
-import java.lang.Math;
 import java.util.Random;
 
 /**
