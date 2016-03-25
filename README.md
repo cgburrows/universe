@@ -37,3 +37,4 @@ Changelog
 * Added the README.md file (so meta!)
 * The observable universe now runs smoothly with 600 stars!
 * Fixed the window size reverting back to 512 x 512
+* Removed unneeded imports
