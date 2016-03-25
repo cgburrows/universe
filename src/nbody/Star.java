@@ -21,8 +21,8 @@ public class Star {
     private double brightness; // brightness
     Color c;
 
-    private final int xPos;
-    private final int yPos;
+    private final double xPos;
+    private final double yPos;
 
     private final int minLight;
     private final int maxLight;
@@ -30,8 +30,8 @@ public class Star {
     Random r;
     double d;
     
-    public Star(int x, int y) {
-        brightness = 0;
+    public Star(double x, double y) {
+        brightness = 65;
         c = new Color(65, 65, 65);
 
         this.minLight = 65;
@@ -41,16 +41,18 @@ public class Star {
         this.yPos = y;
 
         r = new Random();
-        d = (double) (r.nextInt(maxLight) + minLight);
+        d = (double) (r.nextInt(628));
     } // Star()
 
     public void shine() {
-        brightness = 95 * Math.cos(d);
+        d = d + 2;
+        brightness = 95 * Math.cos(d * 0.005) + 160;
         c = new Color((int) brightness, (int) brightness, (int) brightness);
     }
 
     public void draw() {
         StdDraw.setPenColor(c);
+        StdDraw.setPenRadius(.003);
         StdDraw.point(xPos, yPos);
     }
 }

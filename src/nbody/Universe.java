@@ -2,7 +2,11 @@ package nbody;
 
 import edu.princeton.cs.In;
 import edu.princeton.cs.StdDraw;
+import java.awt.Color;
+import java.awt.List;
 import java.util.ArrayList;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
 
 /**
  * ****************************************************************************
@@ -26,7 +30,8 @@ public class Universe {
     private final double radius;     // radius of universe
     private final int N;             // number of bodies
     private final Body[] orbs;       // array of N bodies
-    private final Star[] stars;       // array of stars
+    private final int S;             // number of stars
+    private final Star[] stars;      // array of stars
 
     // read universe from file
     public Universe(String fileName) {
@@ -38,7 +43,12 @@ public class Universe {
         // number of bodies
         N = inputStream.readInt();
 
+        // number of stars
+        S = 600;
+
         // the set scale for drawing on screen
+        StdDraw.setCanvasSize(900, 900);
+
         radius = inputStream.readDouble();
         StdDraw.setXscale(-radius, +radius);
         StdDraw.setYscale(-radius, +radius);
@@ -58,11 +68,19 @@ public class Universe {
             double size = mass * .0000000000000000000000000000000001;
             orbs[i] = new Body(r, v, mass);
         } // for
-        
+
         // do some stars
-        stars = new Star[5];
-        for (int i = 0; i < 5; i++) {
-            // make random coords here
+        stars = new Star[S];
+        for (int i = 0; i < S; i++) {
+            double sX;
+            double sY;
+
+            //sX = (double) (r.nextInt((int) radius));
+            //sY = (double) (r.nextInt((int) radius));
+            sX = ThreadLocalRandom.current().nextDouble(-radius, +radius);
+            sY = ThreadLocalRandom.current().nextDouble(-radius, +radius);
+
+            stars[i] = new Star(sX, sY);
         }
     } // Universe()
 
@@ -96,23 +114,28 @@ public class Universe {
             orbs[i].draw();
         } // for
     } // draw()
-    
-    // add stars
+
+    // draw stars
     public void burn() {
-        
+        for (int i = 0; i < S; i++) {
+            stars[i].shine();
+            stars[i].draw();
+        }
     }
 
     // client to simulate a universe
     public static void main(String[] args) {
         Universe newton = new Universe(args[1]);
         double dt = Double.parseDouble(args[0]);
-          
+
         while (true) {
-            StdDraw.clear();
+            StdDraw.clear(Color.BLACK);
+            newton.burn();
             newton.increaseTime(dt);
+            StdDraw.setPenColor(Color.WHITE);
             newton.draw();
             StdDraw.show(10);
-            StdDraw.textLeft(0, 0, "HELLO");
+            //StdDraw.textLeft(0, 0, "HELLO");
         } // while
     } // main( String [] )
 } // Universe
